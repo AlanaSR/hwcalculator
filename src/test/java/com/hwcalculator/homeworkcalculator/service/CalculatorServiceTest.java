@@ -17,36 +17,35 @@ public class CalculatorServiceTest {
     Integer num1 = 5;
     Integer num2 = 5;
 
+
     @Test
     public void calculatorPlusTest() {
         Integer expectedPlus = num1 + num2;
-        Integer actual = Integer.valueOf(calculatorService.plus(num1, num2));
-        assertEquals(expectedPlus, actual);
+        assertEquals(expectedPlus, calculatorService.plus(num1,num2));
     }
 
     @Test
     public void calculatorMinusTest() {
         Integer expectedMinus = num1 - num2;
-        Integer actual = Integer.valueOf(calculatorService.minus(num1, num2));
-        assertEquals(expectedMinus, actual);
+        assertEquals(expectedMinus, calculatorService.minus(num1, num2));
     }
 
     @Test
     public void calculatorMultiplyTest() {
         Integer expectedMultiply = num1 * num2;
-        Integer actual = Integer.valueOf(calculatorService.multiply(num1, num2));
-        assertEquals(expectedMultiply, actual);
+        assertEquals(expectedMultiply, calculatorService.multiply(num1, num2));
     }
 
     @Test
     public void calculatorDivideTest() {
         Integer expectedDivide = num1 / num2;
-        Integer actual = Integer.valueOf(calculatorService.divide(num1, num2));
-        assertEquals(expectedDivide, actual);
+        assertEquals(expectedDivide, calculatorService.divide(num1, num2));
     }
 
     @Test
     public void calculatorDivideByZeroTest() {
-        assertThrows(IllegalArgumentException.class, () -> calculatorService.divide((num1, 0)))
+        Exception exception = assertThrows(ExceptionDivideByZero.class, () -> {
+            calculatorService.divide(num1, 0);
+        });
     }
 }
